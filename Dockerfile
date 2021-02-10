@@ -3,6 +3,8 @@ FROM quay.io/team-helium/miner:latest-arm64
 
 WORKDIR /opt/miner
 
+ARG DATE=2102100014
+
 COPY docker.config /opt/miner/releases/0.1.0/sys.config
 COPY start-miner.sh /opt/miner/start-miner.sh
 RUN chmod +x /opt/miner/start-miner.sh
