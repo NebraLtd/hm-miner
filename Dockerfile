@@ -1,9 +1,7 @@
-FROM quay.io/team-helium/miner:miner-arm64_2021.02.12.0_GA
+FROM quay.io/team-helium/miner:miner-arm64_2021.02.18.0_GA
 #FROM localhost:5000/miner:arm64
 
 WORKDIR /opt/miner
-
-ARG DATE=2102100014
 
 COPY docker.config /opt/miner/releases/0.1.0/sys.config
 COPY start-miner.sh /opt/miner/start-miner.sh
