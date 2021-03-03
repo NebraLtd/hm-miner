@@ -1,5 +1,7 @@
 FROM quay.io/team-helium/miner:latest-arm64
 
+ARG UPDATE=2021-03-03-11-28
+
 WORKDIR /opt/miner
 
 COPY docker.config /opt/miner/releases/0.1.0/sys.config
