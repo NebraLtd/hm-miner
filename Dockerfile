@@ -1,6 +1,4 @@
-FROM quay.io/team-helium/miner:latest-arm64
-
-ARG UPDATE=2021-03-03-11-28
+FROM quay.io/team-helium/miner:miner-arm64_2021.03.02.2_GA
 
 WORKDIR /opt/miner
 
