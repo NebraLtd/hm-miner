@@ -1,4 +1,4 @@
-FROM quay.io/team-helium/miner:miner-arm64_2021.06.08.0_GA
+FROM quay.io/team-helium/miner:miner-arm64_2021.06.09.0_GA
 
 WORKDIR /opt/miner
 
