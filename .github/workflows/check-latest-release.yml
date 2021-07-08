@@ -19,6 +19,6 @@ jobs:
             echo "We're on the latest Helium GA release."
             exit 0
           else
-            echo "We're not on the latest Helium GA release. Please update."
+            echo "We're not on the latest Helium GA release. Please update to $LATEST_GA."
             exit 1
           fi
