@@ -1,0 +1,23 @@
+name: Check if we're using the latest Helium GA
+
+on:
+  schedule:
+    - cron:  "00 * * * *" # Run hourly
+
+jobs:
+  main:
+    runs-on: ubuntu-20.04
+    steps:
+      -
+        name: Perform check
+        run: |
+          # Get the latest GA release
+          LATEST_GA=$(curl -s  https://quay.io/v1/repositories/team-helium/miner/tags | jq -r --sort-keys '. | keys[] | select(. | endswith("GA"))' | tail -n 1)
+
+          if grep -q "$LATEST_GA" Dockerfile; then
+            echo "We're on the latest Helium GA release."
+            exit 0
+          else
+            echo "We're not on the latest Helium GA release. Please update."
+            exit 1
+          fi
