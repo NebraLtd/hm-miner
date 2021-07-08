@@ -8,8 +8,9 @@ jobs:
   main:
     runs-on: ubuntu-20.04
     steps:
-      -
-        name: Perform check
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Perform check
         run: |
           # Get the latest GA release
           LATEST_GA=$(curl -s  https://quay.io/v1/repositories/team-helium/miner/tags | jq -r --sort-keys '. | keys[] | select(. | endswith("GA"))' | tail -n 1)
