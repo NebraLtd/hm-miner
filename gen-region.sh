@@ -6,4 +6,4 @@ while ! /opt/miner/bin/miner info region > /dev/null 2>&1; do
 done
 
 REGIONDATA=$(/opt/miner/bin/miner info region)
-echo $REGIONDATA > /var/pktfwd/region
+echo "$REGIONDATA" > /var/pktfwd/region
