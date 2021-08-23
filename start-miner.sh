@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ "$(df -h /var/data/ | tail -1 | awk '{print $5}' | tr -d '%')" -ge 80 ]; then
+  rm -rf /var/data/* 
+fi
+
 wget \
     -O /opt/miner/releases/0.1.0/sys.config \
     "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
