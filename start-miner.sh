@@ -5,7 +5,7 @@ if [ "$(df -h /var/data/ | tail -1 | awk '{print $5}' | tr -d '%')" -ge 80 ]; th
 fi
 
 wget \
-    -O /opt/miner/releases/0.1.0/sys.config \
+    -O /opt/miner/releases/2021.08.31.1_GA/sys.config \
     "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
 
 if ! PUBLIC_KEYS=$(/opt/miner/bin/miner print_keys)
