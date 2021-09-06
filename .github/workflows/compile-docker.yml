@@ -1,27 +1,11 @@
 name: Compile Docker Images
 
-on:
-  push:
-    tags:
-       - '*GA'
+on: [push]
 
 jobs:
   main:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-
-      - name: Check output
-        env:
-          HELIUM_GA_RELEASE: ${{ steps.vars.outputs.tag }}
-        run: |
-          echo $HELIUM_GA_RELEASE
-          echo ${{ steps.vars.outputs.tag }}
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -39,8 +23,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          build-args: |
-            HELIUM_GA_RELEASE:${{ steps.vars.outputs.tag }}
           tags: |
                 nebraltd/hm-miner:${{ github.sha }}
                 nebraltd/hm-miner:latest
