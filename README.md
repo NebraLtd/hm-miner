@@ -4,13 +4,6 @@ Helium Miner Container
 
 ## Creating a release
 
-To create a new release, run the following commands:
-
-```
-# git tag 2021.09.03.0_GA
-$ git push origin 2021.09.03.0_GA
-```
-
-(Replace "2021.09.03.0_GA" with the desired release.)
-
-This will in turn create a new GitHub Release and build the package.
+* Create a new branch
+* Edit the first line of `Dockerfile` to point to the new GA release
+* Push and create a new PR
