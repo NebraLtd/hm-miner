@@ -8,6 +8,7 @@ COPY docker.config /opt/miner/releases/$HELIUM_GA_RELEASE/sys.config
 COPY start-miner.sh /opt/miner/start-miner.sh
 COPY gen-region.sh /opt/miner/gen-region.sh
 
-ENV HELIUM_GA_RELEASE=$HELIUM_GA_RELEASE
+ARG HELIUM_GA_RELEASE
+ENV HELIUM_GA_RELEASE $HELIUM_GA_RELEASE
 
 ENTRYPOINT ["/opt/miner/start-miner.sh"]
