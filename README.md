@@ -12,3 +12,5 @@ $ git push origin 2021.09.03.0_GA
 ```
 
 (Replace "2021.09.03.0_GA" with the desired release.)
+
+This will in turn create a new GitHub Release and build the package.
