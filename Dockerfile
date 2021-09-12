@@ -10,6 +10,6 @@ COPY gen-region.sh /opt/miner/gen-region.sh
 
 ARG HELIUM_GA_RELEASE
 ENV HELIUM_GA_RELEASE $HELIUM_GA_RELEASE
-ENV DBUS_SYSTEM_BUS_ADDRESS=tcp:host=dbus-system,port=55884
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
 
 ENTRYPOINT ["/opt/miner/start-miner.sh"]
