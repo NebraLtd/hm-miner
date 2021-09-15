@@ -3,6 +3,7 @@ name: Check if we're using the latest Helium GA
 on:
   schedule:
     - cron:  "00 * * * *" # Run hourly
+  workflow_dispatch:
 
 jobs:
   main:
