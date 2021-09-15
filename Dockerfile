@@ -1,6 +1,6 @@
-ARG HELIUM_GA_RELEASE=2021.09.14.0_GA
+ARG HELIUM_GA_RELEASE=2021.09.14.0
 
-FROM quay.io/team-helium/miner:miner-arm64_$HELIUM_GA_RELEASE
+FROM quay.io/team-helium/miner:miner-arm64_"$HELIUM_GA_RELEASE"_GA
 
 WORKDIR /opt/miner
 
