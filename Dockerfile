@@ -11,6 +11,6 @@ COPY gen-region.sh /opt/miner/gen-region.sh
 ARG HELIUM_GA_RELEASE
 ENV HELIUM_GA_RELEASE $HELIUM_GA_RELEASE
 
-RUN echo "$HELIUM_GA_RELEASE" > /dev/lsb-release
+RUN echo "$HELIUM_GA_RELEASE" > /etc/lsb-release
 
 ENTRYPOINT ["/opt/miner/start-miner.sh"]
