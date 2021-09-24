@@ -2,7 +2,7 @@
 
 wait_for_dbus() {
 	while true; do
-		dbus-send --session \
+		dbus-send --system \
 			  --print-reply \
 			  --dest=org.freedesktop.DBus \
 			  /org/freedesktop/DBus \
