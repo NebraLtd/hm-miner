@@ -11,23 +11,62 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Perform check
+        with: 
+          ref: ${{ github.ref }}
+      - name: Perform check and update
         run: |
-          # Get the latest GA release
+          # Get the latest GA release and update if necessary
           LATEST_GA=$(curl -s  https://quay.io/v1/repositories/team-helium/miner/tags | jq -r --sort-keys '. | keys[] | select(. | endswith("GA"))' | tail -n 1 | sed 's/miner-arm64_//g' | sed 's/_GA//g')
+          GITHUB_BRANCH=$( echo "${{ github.ref }}" | sed 's/refs\/heads\///g' )
+          
+          echo "LATEST_GA=$LATEST_GA" >> $GITHUB_ENV
+          echo "GITHUB_BRANCH=$GITHUB_BRANCH" >> $GITHUB_ENV
 
           if grep -q "$LATEST_GA" Dockerfile; then
-            echo "We're on the latest Helium GA release."
+            echo "We're on the latest Helium GA release $LATEST_GA."
             exit 0
           else
-            echo "We're not on the latest Helium GA release. Please update to $LATEST_GA."
-            exit 1
+            echo "We're not on the latest Helium GA release. Updating to $LATEST_GA."
+            sed -i -E "1 s/HELIUM_GA_RELEASE=.{12}/HELIUM_GA_RELEASE=$LATEST_GA/g" Dockerfile
+            UPDATED=true
+            echo "UPDATED=$UPDATED" >> $GITHUB_ENV
+            exit 0
           fi
+      - name: Push updated Dockerfile if available
+        if: env.UPDATED == 'true'
+        id: push
+        uses: test-room-7/action-update-file@v1
+        with:
+          branch: ${{ env.GITHUB_BRANCH }}
+          file-path: Dockerfile
+          commit-msg: Update miner to latest GA ${{ env.LATEST_GA }}
+          github-token: ${{ secrets.MINER_UPDATE }}
+      - name: Tag Commit
+        if: env.UPDATED == 'true'
+        uses: NebraLtd/git-tag-action@master
+        env:
+          TAG: ${{ env.LATEST_GA }}_GA
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_SHA: ${{ steps.push.outputs.commit-sha }}
+      - name: Release
+        if: env.UPDATED == 'true'
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          body: "Bump miner to ${{ env.LATEST_GA }}_GA"
+          commit: ${{ steps.push.outputs.commit-sha }}
+          tag: ${{ env.LATEST_GA }}_GA
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Report Status
-        if: always()
+        if: env.UPDATED == 'true'
         uses: ravsamhq/notify-slack-action@master
         with:
           status: ${{ job.status }}
-          notify_when: 'failure'
+          notification_title: 'Miner GA has been updated to ${{ env.LATEST_GA }}. Please push to testnet!'
+          message_format: '{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>'
+          footer: '<{run_url}|View Run> | Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>'
+          mention_groups: 'S02GCFWL27R'
+          notify_when: 'success'
+          token: ${{ secrets.GITHUB_TOKEN }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.MINER_MONITORING_SLACK }}
