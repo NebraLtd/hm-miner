@@ -48,6 +48,15 @@ jobs:
           TAG: ${{ env.LATEST_GA }}_GA
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ steps.push.outputs.commit-sha }}
+      - name: Release
+        if: env.UPDATED == 'true'
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          body: "Bump miner to ${{ env.LATEST_GA }}_GA"
+          commit: ${{ steps.push.outputs.commit-sha }}
+          tag: ${{ env.LATEST_GA }}_GA
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Report Status
         if: env.UPDATED == 'true'
         uses: ravsamhq/notify-slack-action@master
