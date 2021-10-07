@@ -16,7 +16,8 @@ jobs:
       - name: Perform check and update
         run: |
           # Get the latest GA release and update if necessary
-          LATEST_GA=$(curl -s  https://quay.io/v1/repositories/team-helium/miner/tags | jq -r --sort-keys '. | keys[] | select(. | endswith("GA"))' | tail -n 1 | sed 's/miner-arm64_//g' | sed 's/_GA//g')
+          # LATEST_GA=$(curl -s  https://quay.io/v1/repositories/team-helium/miner/tags | jq -r --sort-keys '. | keys[] | select(. | endswith("GA"))' | tail -n 1 | sed 's/miner-arm64_//g' | sed 's/_GA//g')
+          LATEST_GA=4040.20.30.1
           GITHUB_BRANCH=$( echo "${{ github.ref }}" | sed 's/refs\/heads\///g' )
           
           echo "LATEST_GA=$LATEST_GA" >> $GITHUB_ENV
