@@ -3,7 +3,7 @@
 This is the codebase for the Helium miner container used on the Nebra hotspot miners.
 
 We take the base image created by Helium from their [Quay repo](
-https://quay.io/repository/team-helium/miner?tab=tags) (built from the [GitHub source](https://github.com/helium/miner)) and make some customisations to optimise it for use on our hardware including adding a start script and a script to automatically determine the regulatory region (EU868, US915 etc) from the asserted locaiton of the miner.
+https://quay.io/repository/team-helium/miner?tab=tags) (built from the [GitHub source](https://github.com/helium/miner)) and make some customisations to optimise it for use on our hardware including adding a start script and a script to automatically determine the regulatory region (EU868, US915 etc) from the asserted location of the miner.
 
 ## Miner config file update
 
