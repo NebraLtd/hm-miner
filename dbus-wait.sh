@@ -2,13 +2,13 @@
 
 wait_for_dbus() {
 	while true; do
-		dbus-send --system \
+		dbus_wait=$(dbus-send --system \
 			  --print-reply \
 			  --dest=org.freedesktop.DBus \
 			  /org/freedesktop/DBus \
-			  org.freedesktop.DBus.ListNames
+			  org.freedesktop.DBus.ListNames)
 
-		if [ $? ]; then
+                if [ "$dbus_wait" -eq 0 ]; then
 			break;
 		else
 			sleep 0.1
