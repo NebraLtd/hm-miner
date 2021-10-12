@@ -6,7 +6,7 @@ wait_for_dbus() {
 			  --print-reply \
 			  --dest=org.freedesktop.DBus \
 			  /org/freedesktop/DBus \
-			  org.freedesktop.DBus.ListNames)
+			  org.freedesktop.DBus.ListNames
 
                 dbus_wait=$?
 		if [ "$dbus_wait" -eq 0 ]; then
