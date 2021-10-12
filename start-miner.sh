@@ -10,6 +10,15 @@ wget \
     -O "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config" \
     "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
 
+ECC_SUCCESSFUL_TOUCH_FILEPATH=/var/data/gwmfr_ecc_provisioned
+while ! [ -f "$ECC_SUCCESSFUL_TOUCH_FILEPATH" ];
+do
+    echo "Waiting for touch file at $ECC_SUCCESSFUL_TOUCH_FILEPATH."
+    sleep 5
+done
+
+echo "Touch file found at $ECC_SUCCESSFUL_TOUCH_FILEPATH. Starting miner."
+
 if ! PUBLIC_KEYS=$(/opt/miner/bin/miner print_keys)
 then
   exit 1
