@@ -11,8 +11,7 @@ wget \
     "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
 
 # Wait for the diagnostics app is loaded
-wget -q -T 10 -O - http://diagnostics:5000/initFile.txt > /dev/null
-if [ $? -gt 0 ]; then
+if ! wget -q -T 10 -O - http://diagnostics:5000/initFile.txt > /dev/null; then
     sleep 5
     exit 1
 fi
