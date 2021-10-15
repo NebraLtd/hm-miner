@@ -10,23 +10,14 @@ wget \
     -O "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config" \
     "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
 
-ECC_SUCCESSFUL_TOUCH_FILEPATH=/var/data/gwmfr_ecc_provisioned
-while ! [ -f "$ECC_SUCCESSFUL_TOUCH_FILEPATH" ];
-do
-    echo "Waiting for touch file at $ECC_SUCCESSFUL_TOUCH_FILEPATH."
+# Wait for the diagnostics app is loaded
+wget -q -T 10 -O - http://diagnostics:5000/initFile.txt > /dev/null
+if [ $? -gt 0 ]; then
     sleep 5
-done
-
-echo "Touch file found at $ECC_SUCCESSFUL_TOUCH_FILEPATH. Starting miner."
-
-if ! PUBLIC_KEYS=$(/opt/miner/bin/miner print_keys)
-then
-  exit 1
-else
-  echo "$PUBLIC_KEYS" > /var/data/public_keys
+    exit 1
 fi
 
 /opt/miner/gen-region.sh &
 
 wait_for_dbus \
-	&& /opt/miner/bin/miner foreground
+    && /opt/miner/bin/miner foreground
