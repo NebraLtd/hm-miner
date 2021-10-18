@@ -3,7 +3,7 @@
 . ./dbus-wait.sh
 
 if [ "$(df -h /var/data/ | tail -1 | awk '{print $5}' | tr -d '%')" -ge 80 ]; then
-  rm -rf /var/data/*
+    rm -rf /var/data/*
 fi
 
 wget \
@@ -11,10 +11,11 @@ wget \
     "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
 
 # Wait for the diagnostics app is loaded
-if ! wget -q -T 10 -O - http://diagnostics:5000/initFile.txt > /dev/null; then
-    sleep 5
-    exit 1
-fi
+until wget -q -T 10 -O - http://diagnostics:5000/initFile.txt > /dev/null 2>&1
+do
+    echo "Diagnostics container not ready. Going to sleep."
+    sleep 10
+done
 
 /opt/miner/gen-region.sh &
 
