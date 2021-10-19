@@ -41,6 +41,10 @@ jobs:
           file-path: Dockerfile
           commit-msg: Update miner to latest GA ${{ env.LATEST_GA }}
           github-token: ${{ secrets.MINER_UPDATE }}
+      - name: Sleep for 30s to ensure commit pushed sucesfully
+        if: env.UPDATED == 'true'
+        run: |
+          sleep 30
       - name: Tag Commit
         if: env.UPDATED == 'true'
         uses: NebraLtd/git-tag-action@master
