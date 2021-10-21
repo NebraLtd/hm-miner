@@ -10,6 +10,6 @@ ENV HELIUM_GA_RELEASE $HELIUM_GA_RELEASE
 COPY docker.config /opt/miner/releases/"$HELIUM_GA_RELEASE"/sys.config
 COPY *.sh /opt/miner/
 
-RUN echo "$HELIUM_GA_RELEASE" > /etc/lsb-release
+RUN echo "$HELIUM_GA_RELEASE" > /etc/lsb_release
 
 ENTRYPOINT ["/opt/miner/start-miner.sh"]
