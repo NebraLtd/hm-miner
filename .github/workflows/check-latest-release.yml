@@ -70,3 +70,16 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.MINER_MONITORING_SLACK }}
+      - name: Report Status Dev Team
+        if: env.UPDATED == 'true'
+        uses: ravsamhq/notify-slack-action@master
+        with:
+          status: ${{ job.status }}
+          notification_title: 'Miner GA has been updated to ${{ env.LATEST_GA }}. Please push to testnet!'
+          message_format: '{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>'
+          footer: '<{run_url}|View Run> | Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow>'
+          mention_groups: 'S02GCFWL27R'
+          notify_when: 'success'
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.DEV_TEAM_SLACK }}
