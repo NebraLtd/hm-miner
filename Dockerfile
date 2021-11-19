@@ -8,6 +8,7 @@ ARG HELIUM_GA_RELEASE
 ENV HELIUM_GA_RELEASE $HELIUM_GA_RELEASE
 
 COPY docker.config /opt/miner/releases/"$HELIUM_GA_RELEASE"/sys.config
+COPY docker.config.rockpi /opt/miner/docker.config.rockpi
 COPY *.sh /opt/miner/
 
 RUN echo "$HELIUM_GA_RELEASE" > /etc/lsb_release
