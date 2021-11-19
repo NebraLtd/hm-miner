@@ -19,6 +19,10 @@ Our [Helium block tracker](https://github.com/NebraLtd/hm-block-tracker) automat
 
 This enables our miners to sync extremely fast (called "instant sync" by some manufacturers) by downloading very up to date snapshots... ~240 blocks is considered synced to all intents and purposes and usually is [close enough to being synced](https://github.com/helium/miner/issues/957#issuecomment-899903729) that it will already be able to submit transactions to the current consensus group. Note that this is worst case scenario - as the snapshot is updated every 4 hours - so it will often be more up to date than ~240 blocks (unless you are right at the end of a 4 hour period).
 
+## Environment variables
+`RASPBERRYPI_MINER_CONFIG_URL` and `ROCKPI_MINER_CONFIG_URL` are used to load the correct
+helium/miner `sys.config` file.
+
 ## Creating a release with updated miner GA
 
 * Create a new branch
