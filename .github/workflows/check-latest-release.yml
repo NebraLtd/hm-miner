@@ -58,6 +58,7 @@ jobs:
           tag: ${{ env.LATEST_GA }}_GA
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Trigger PR action in helium-miner-software repo
+        if: env.UPDATED == 'true'
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.MINER_UPDATE }}
