@@ -63,7 +63,7 @@ jobs:
           token: ${{ secrets.MINER_UPDATE }}
           event-type: miner-update
           repository: NebraLtd/helium-miner-software
-          client-payload: '{"sha": "${{ steps.push.outputs.commit-sha }}", "tag": "${{ env.LATEST_GA }}_GA"}'
+          client-payload: '{"sha": "${{ steps.push.outputs.commit-sha }}", "release": "${{ env.LATEST_GA }}_GA", "tag": "${{ env.LATEST_GA }}"}'
       - name: Report Status
         if: env.UPDATED == 'true'
         uses: ravsamhq/notify-slack-action@master
