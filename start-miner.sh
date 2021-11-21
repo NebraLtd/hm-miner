@@ -12,6 +12,9 @@ OVERRIDE_CONFIG_URL="${RASPBERRYPI_MINER_CONFIG_URL:-https://helium-assets.nebra
 if [ "$BALENA_DEVICE_TYPE" = "rockpi-4b-rk3399" ]; then
   cp /opt/miner/docker.config.rockpi "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config"
   OVERRIDE_CONFIG_URL="${ROCKPI_MINER_CONFIG_URL:-https://helium-assets.nebra.com/docker.config.rockpi}"
+elif [ "$BALENA_DEVICE_TYPE" = "intel-nuc" ]; then
+  cp /opt/miner/docker.config.5g "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config"
+  OVERRIDE_CONFIG_URL="${5G_MINER_CONFIG_URL:-https://helium-assets.nebra.com/docker.config.5g}"
 fi
 
 wget \
