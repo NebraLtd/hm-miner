@@ -1,6 +1,8 @@
 name: Compile Docker Images
 
-on: [push]
+on: 
+  push
+  release:
 
 jobs:
   main:
