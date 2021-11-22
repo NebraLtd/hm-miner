@@ -1,0 +1,18 @@
+%% -*- erlang -*-
+[
+  "config/sys.config",
+  {lager,
+    [
+      {log_root, "/var/log/miner"}
+    ]},
+  {blockchain,
+    [
+      {key, {tpm, [{key_path, "HS/SRK/MinerKey"}]}}
+    ]},
+  {miner,
+    [
+      {use_ebus, true},
+      {radio_device, { {0,0,0,0}, 1680,
+        {0,0,0,0}, 31341} }
+    ]}
+].
