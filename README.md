@@ -7,17 +7,21 @@ https://quay.io/repository/team-helium/miner?tab=tags) (built from the [GitHub s
 
 ## Miner config file update
 
-In the `start-miner.sh` script in this repo, you will see that we [update the included sys.config file](https://github.com/NebraLtd/hm-miner/blob/master/start-miner.sh#L9-L11) every time the miner container is loaded, using the below code:
+In the `start-miner.sh` script in this repo, you will see that we [update the included sys.config file](https://github.com/NebraLtd/hm-miner/blob/master/start-miner.sh#L9-L22) every time the miner container is loaded, using the below code:
 
 ```shell
 wget \
     -O "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config" \
-    "${OVERRIDE_CONFIG_URL:=https://helium-assets.nebra.com/docker.config}"
+    "${OVERRIDE_CONFIG_URL}"
 ```
 
 Our [Helium block tracker](https://github.com/NebraLtd/hm-block-tracker) automatically creates miner snapshots every ~240 blocks and at the same time also updates a `docker.config` file located [on our server](https://helium-assets.nebra.com/docker.config) with the block height and hash of the snapshot, enabling it to be ingested into the miner.
 
 This enables our miners to sync extremely fast (called "instant sync" by some manufacturers) by downloading very up to date snapshots... ~240 blocks is considered synced to all intents and purposes and usually is [close enough to being synced](https://github.com/helium/miner/issues/957#issuecomment-899903729) that it will already be able to submit transactions to the current consensus group. Note that this is worst case scenario - as the snapshot is updated every 4 hours - so it will often be more up to date than ~240 blocks (unless you are right at the end of a 4 hour period).
+
+## Environment variables
+`RASPBERRYPI_MINER_CONFIG_URL`, `ROCKPI_MINER_CONFIG_URL` and `5G_MINER_CONFIG_URL` are used to load the correct
+helium/miner `sys.config` file.
 
 ## Creating a release with updated miner GA
 
@@ -42,4 +46,4 @@ This repo automatically builds docker containers and uploads them to two reposit
 - [hm-miner on DockerHub](https://hub.docker.com/r/nebraltd/hm-miner)
 - [hm-miner on GitHub Packages](https://github.com/NebraLtd/hm-miner/pkgs/container/hm-miner)
 
-The images are tagged using the docker long and short commit SHAs for that release. The current version deployed to miners can be found in the [helium-miner-software repo](https://github.com/NebraLtd/helium-miner-software/blob/production/docker-compose.yml).
+The images are tagged using the docker long and short commit SHAs for that release with architecture `arm64` or `amd64` as a prefix. The current version deployed to miners can be found in the [helium-miner-software repo](https://github.com/NebraLtd/helium-miner-software/blob/production/docker-compose.yml).
