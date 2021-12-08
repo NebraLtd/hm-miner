@@ -35,6 +35,7 @@ helium/miner `sys.config` file.
 
 Mr Bump is currently used in the following repos:
 - [hm-miner](https://github.com/NebraLtd/hm-miner)
+- [hm-pyhelper](https://github.com/NebraLtd/hm-pyhelper)
 - [hm-gatewayrs](https://github.com/NebraLtd/hm-gatewayrs)
 - [helium-miner-software](https://github.com/NebraLtd/helium-miner-software)
 - [light-hotspot-software](https://github.com/NebraLtd/light-hotspot-software)
