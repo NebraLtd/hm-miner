@@ -21,7 +21,7 @@ This enables our miners to sync extremely fast (called "instant sync" by some ma
 
 ## Environment variables
 `RASPBERRYPI_MINER_CONFIG_URL`, `ROCKPI_MINER_CONFIG_URL` and `5G_MINER_CONFIG_URL` are used to load the correct
-helium/miner `sys.config` file.
+helium/miner `sys.config` file. On the TESTNET fleets we use `https://helium-assets-stage.nebra.com/docker.config` as opposed to `https://helium-assets.nebra.com/docker.config` on the main fleets. For ROCK Pi and 5G we append `.rockpi` or `.5g` to the end of the URL.
 
 ## Creating a release with updated miner GA
 
