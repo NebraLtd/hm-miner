@@ -7,7 +7,8 @@
     ]},
   {blockchain,
     [
-      {key, {tpm, [{key_path, "HS/SRK/MinerKey"}]}}
+      {key, {tpm, [{key_path, "HS/SRK/MinerKey"}]}},
+      {blocks_to_protect_from_gc, 4000}
     ]},
   {miner,
     [
