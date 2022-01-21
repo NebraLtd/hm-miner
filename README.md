@@ -23,6 +23,15 @@ This enables our miners to sync extremely fast (called "instant sync" by some ma
 `RASPBERRYPI_MINER_CONFIG_URL`, `ROCKPI_MINER_CONFIG_URL` and `5G_MINER_CONFIG_URL` are used to load the correct
 helium/miner `sys.config` file. On the TESTNET fleets we use `https://helium-assets-stage.nebra.com/docker.config` as opposed to `https://helium-assets.nebra.com/docker.config` on the main fleets. For ROCK Pi and 5G we append `.rockpi` or `.5g` to the end of the URL.
 
+## Miner GC setup
+We have set 2 variables related to garbage collection to help improve the storage usage and performance of miners. 
+`BLOCKCHAIN_ROCKSDB_GC_BYTES` Which is being set as an environment variable in the dockerfile
+`blocks_to_protect_from_gc` Which is being set in sys.config under the blockchain block config
+
+The values we have used for these 2 are the following: `blocks_to_protect_from_gc` is set to 4000 to give it some good buffer without removing too many blocks on GC trigger and `BLOCKCHAIN_ROCKSDB_GC_BYTES` is set to 8GB which means it will prioritze cleaning up files 
+
+`blocks_to_protect_from_gc` is being set in hm-block-tracker [here](https://github.com/NebraLtd/hm-block-tracker/)
+
 ## Creating a release with updated miner GA
 
 * Create a new branch
