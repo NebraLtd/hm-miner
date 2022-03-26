@@ -2,7 +2,7 @@ ARG HELIUM_GA_RELEASE=2022.03.23.1
 ARG BUILD_ARCH=arm64
 ARG BLOCKCHAIN_ROCKSDB_GC_BYTES=8589934592
 
-FROM quay.io/team-helium/miner:miner-"$BUILD_ARCH"_"$HELIUM_GA_RELEASE"_GA
+FROM quay.io/team-helium/miner-testnet:miner-"$BUILD_ARCH"_"$HELIUM_GA_RELEASE"_GA
 
 WORKDIR /opt/miner
 
