@@ -7,8 +7,7 @@
     ]},
     {blockchain,
     [
-      {key, {ecc, [{key_slot, 0}, {onboarding_key_slot, 0}, {bus, "i2c-7"}]}},
-      {blocks_to_protect_from_gc, 4000}
+      {key, {ecc, [{key_slot, 0}, {onboarding_key_slot, 0}, {bus, "i2c-7"}]}}
     ]},
   {miner,
     [

@@ -8,7 +8,7 @@
  {lager,
   [
    {suppress_supervisor_start_stop, true},
-   {log_root, "/var/data/log"},
+   {log_root, "/var/log/miner"},
    {crash_log, "crash.log"},
    {colored, true},
    {metadata_whitelist, [poc_id]},
@@ -52,7 +52,7 @@
    {blessed_snapshot_block_hash,
      <<126, 40, 6, 231, 16, 190, 149, 156, 254, 129, 164, 176, 213, 165, 50, 194, 42, 223, 120, 231, 2, 241, 171, 29, 243, 138, 108, 96, 225, 165, 59, 197>>},
    {listen_addresses, ["/ip4/0.0.0.0/tcp/44158"]},
-   {key, undefined},
+   {key, {ecc, [{key_slot, 0}, {onboarding_key_slot, 0}, {bus, "i2c-7"}]}}, %% don't make this the last line in the stanza because sed and keep it on one line
    {base_dir, "/var/data"},
    {onboarding_dir, "/mnt/uboot"},
    {num_consensus_members, 16},
