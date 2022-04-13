@@ -20,6 +20,7 @@ elif [ "$VARIANT" = "COMP-PISCESP100" ]; then
   OVERRIDE_CONFIG_URL="${ROCKPI_MINER_CONFIG_URL:-https://helium-assets.nebra.com/docker.config.pisces}"
 fi
 
+echo "downloading override url ${OVERRIDE_CONFIG_URL}"
 wget \
     -O "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config" \
     "${OVERRIDE_CONFIG_URL}"
