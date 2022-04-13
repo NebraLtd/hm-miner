@@ -31,6 +31,12 @@ do
     sleep 10
 done
 
+# export override port. There is bug in this release.
+# It doesn't have default, can be removed later.
+if [ -z ${GRPC_PORT+x} ]; then
+  export GRPC_PORT=8080
+fi
+
 /opt/miner/gen-region.sh &
 
 wait_for_dbus \
