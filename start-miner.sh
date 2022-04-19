@@ -32,6 +32,13 @@ do
     sleep 10
 done
 
+
+# dump full config and override config for debugging
+echo "=======================full miner config from /opt/miner/config/sys.config ===================="
+cat /opt/miner/config/sys.config
+echo "=======================override miner config from /opt/miner/releases/$HELIUM_GA_RELEASE/sys.config ===================="
+cat /opt/miner/releases/$HELIUM_GA_RELEASE/sys.config
+
 # export override port. There is bug in this release.
 # It doesn't have default, can be removed later.
 if [ -z ${GRPC_PORT+x} ]; then
