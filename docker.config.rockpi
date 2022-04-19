@@ -11,6 +11,7 @@
     ]},
   {miner,
     [
+      {gateways_run_chain, false}, %% if false, gateways will no longer follow the chain
       {use_ebus, true},
       {radio_device, { {0,0,0,0}, 1680,
         {0,0,0,0}, 31341} }
