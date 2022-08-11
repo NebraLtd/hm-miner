@@ -6,11 +6,11 @@ fi
 
 # Set OVERRIDE_CONFIG_URL based on BALENA_DEVICE_TYPE
 cp /opt/miner/docker.config.5g "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config"
-OVERRIDE_CONFIG_URL="https://helium-assets.nebra.com/docker.config"
+#OVERRIDE_CONFIG_URL="https://helium-assets.nebra.com/docker.config"
 
-wget \
-    -O "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config" \
-    "${OVERRIDE_CONFIG_URL}"
+#wget \
+#    -O "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config" \
+#    "${OVERRIDE_CONFIG_URL}"
 
 /opt/miner/gen-region.sh
 
