@@ -33,5 +33,11 @@ done
 
 /opt/miner/gen-region.sh &
 
-wait_for_dbus \
+prevent_start="${PREVENT_START_MINER:-0}"
+if [ "$prevent_start" = 1 ]; then
+    echo "Miner process will not be started. PREVENT_START_MINER=1"
+    while true; do sleep 1000; done
+else
+    wait_for_dbus \
     && /opt/miner/bin/miner foreground
+fi
