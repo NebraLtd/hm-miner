@@ -18,6 +18,9 @@ elif [ "$BALENA_DEVICE_TYPE" = "intel-nuc" ]; then
 elif [ "$VARIANT" = "COMP-PISCESP100" ]; then
   cp /opt/miner/docker.config.pisces "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config"
   OVERRIDE_CONFIG_URL="${ROCKPI_MINER_CONFIG_URL:-https://helium-assets.nebra.com/docker.config.pisces}"
+elif [ "$VARIANT" = "COMP-PYCOM" ]; then
+  cp /opt/miner/docker.config.pycom "/opt/miner/releases/$HELIUM_GA_RELEASE/sys.config"
+  OVERRIDE_CONFIG_URL="${ROCKPI_MINER_CONFIG_URL:-https://helium-assets.nebra.com/docker.config.pycom}"
 fi
 
 wget \
