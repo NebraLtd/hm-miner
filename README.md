@@ -19,9 +19,11 @@ Our [Helium block tracker](https://github.com/NebraLtd/hm-block-tracker) automat
 
 This enables our miners to sync extremely fast (called "instant sync" by some manufacturers) by downloading very up to date snapshots... ~240 blocks is considered synced to all intents and purposes and usually is [close enough to being synced](https://github.com/helium/miner/issues/957#issuecomment-899903729) that it will already be able to submit transactions to the current consensus group. Note that this is worst case scenario - as the snapshot is updated every 4 hours - so it will often be more up to date than ~240 blocks (unless you are right at the end of a 4 hour period).
 
+**Note:** since Helium moved all miners over to the light miner software, there is no longer syncing required and so "instant sync" and "snapshots" are no longer used.
+
 ## Environment variables
-`RASPBERRYPI_MINER_CONFIG_URL`, `ROCKPI_MINER_CONFIG_URL` and `5G_MINER_CONFIG_URL` are used to load the correct
-helium/miner `sys.config` file. On the TESTNET fleets we use `https://helium-assets-stage.nebra.com/docker.config` as opposed to `https://helium-assets.nebra.com/docker.config` on the main fleets. For ROCK Pi and 5G we append `.rockpi` or `.5g` to the end of the URL.
+`RASPBERRYPI_MINER_CONFIG_URL`, `PISCES_MINER_CONFIG_URL`, `PYCOM_MINER_CONFIG_URL`, `ROCKPI_MINER_CONFIG_URL` and `5G_MINER_CONFIG_URL` are used to load the correct
+helium/miner `sys.config` file. On the TESTNET fleets we use `https://helium-assets-stage.nebra.com/docker.config` as opposed to `https://helium-assets.nebra.com/docker.config` on the main fleets. For Pycom, Pisces, ROCK Pi and 5G we append `.pycom`, `.pisces`, `.rockpi` or `.5g` to the end of the URL.
 
 ## Miner GC setup
 We have set 2 variables related to garbage collection to help improve the storage usage and performance of miners. 
