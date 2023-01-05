@@ -14,8 +14,8 @@ ENV BLOCKCHAIN_ROCKSDB_GC_BYTES $BLOCKCHAIN_ROCKSDB_GC_BYTES
 
 COPY docker.config /opt/miner/releases/"$HELIUM_GA_RELEASE"/sys.config
 COPY docker.config.* /opt/miner/
-COPY *.sh /opt/miner/
+COPY *.sh /opt/mine/
 
 RUN echo "$HELIUM_GA_RELEASE" > /etc/lsb_release
 
-ENTRYPOINT ["/opt/miner/start-miner.sh"]
+ENTRYPOINT ["/opt/mine/start-miner.sh"]
