@@ -1,0 +1,1 @@
+from hm_pyhelper.miner_param import get_ecc_location
