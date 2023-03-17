@@ -15,12 +15,14 @@ ENV BLOCKCHAIN_ROCKSDB_GC_BYTES $BLOCKCHAIN_ROCKSDB_GC_BYTES
 ENV PYTHON_DEPENDENCIES_DIR=/opt/python-dependencies
 
 COPY requirements.txt .
+COPY config_update/ .
+COPY setup.py .
 
 # hadolint ignore=DL3018
 RUN apk add --no-cache --update \
         python3 \
         py3-pip && \
-    pip3 install --no-cache-dir --target="$PYTHON_DEPENDENCIES_DIR" -r requirements.txt
+    pip3 install --no-cache-dir --target="$PYTHON_DEPENDENCIES_DIR" .
 
 COPY docker.config /opt/miner/releases/"$HELIUM_GA_RELEASE"/sys.config
 COPY docker.config.* /opt/miner/
