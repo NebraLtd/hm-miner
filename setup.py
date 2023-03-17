@@ -3,7 +3,7 @@ from distutils.core import setup
 from setuptools import find_packages
 import os
 
-base_name = 'hw_diag'
+base_name = 'update_config'
 
 # allow setup.py to be run from any path
 here = os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir))
@@ -21,7 +21,7 @@ setup(
     author_email='sales@nebra.com',
     include_package_data=True,
     packages=find_packages(),  # include all packages under this directory
-    description='Diagnostics tool for Nebra Helium Hotspot software.',
+    description='Runtime miner config file update tool for Nebra Helium Hotspot software.',
     long_description="",
     zip_safe=False,
 
