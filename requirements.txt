@@ -1,2 +1,2 @@
-hm-pyhelper==0.13.56
+hm-pyhelper==0.13.59
 sentry-sdk==1.17.0
